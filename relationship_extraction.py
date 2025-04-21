@@ -20,15 +20,9 @@ def extract_relationship(sentence: str, entity1: str, entity2: str):
     Returns:
         list: A list of relationships between entity1 and entity2, or an empty list if none found.
     """
-    prompt = f"""Extract all relationships between "{entity1}" and "{entity2}" in the sentence:
-    "{sentence}"
+
     
-    
-    If no relationship exists, return "None".
-    Format: ["relation1", "relation2", ...] or [] if none.
-    Answer: """
-    
-    output = model(prompt, max_tokens=100, temperature=0.2)
+    output = model(sentence, max_tokens=100, temperature=0.2)
     response = output["choices"][0]["text"].strip()
 
     # Convert response to list format safely
@@ -44,33 +38,10 @@ def extract_relationship(sentence: str, entity1: str, entity2: str):
             return [response]  # Fallback if not a proper list
 
 def perform_ner(sentence):
-    prompt = f"""
-    Extract and categorize named entities from the following sentence. 
-    Use **precise and specific categories**, such as:
-    - Person
-    - Scientist, Artist, Athlete, etc. (for individuals)
-    - Country, City, Continent, etc. (for locations)
-    - Crop, Plant, Animal (for biological terms)
-    - Scientific Theory, Law, Formula, etc. (for scientific terms)
-    - Organization, Company, NGO, etc.
-    - Event, Festival, Historical Incident, etc.
-    - Technology, Software, Device, etc.
-    - Action, Process, Activity (for events or processes)
-    - Product, Tool, Machinery, etc. (for objects)
-    
-    Do NOT use vague categories like "Thing" or "Concept".
-    Return only the entity and its category in the format: [Entity] -> [Category]
 
-    Sentence: "{sentence}"
-
-    Output format:
-    [Entity] -> [Category]
-    """
 
     # Generate the response with stop sequences
-    output = model(prompt, max_tokens=300, stop=["\n\n", "Explanation", "description", "Thing", "Concept"])["choices"][0]["text"].strip()
-
-    # Parsing the output into a dictionary
+    output = model(sentence, max_tokens=300)    # Parsing the output into a dictionary
     entities = {}
     for line in output.split("\n"):
         if "->" in line:
