@@ -1,9 +1,5 @@
-# KGConstructionForFarmersUsingDL
 
-
-
-
-# 🌾 Agricultural Knowledge Graph Construction
+# 🌾 Agricultural Knowledge Graph Construction and Visualization
 
 This project constructs and visualizes a **Knowledge Graph (KG)** for the agricultural domain using advanced NLP techniques. It extracts entities and their relationships from agricultural texts using fine-tuned transformer models and displays the graph interactively using a **Streamlit** web app with **Pyvis**.
 
@@ -60,7 +56,7 @@ Interactive Knowledge Graph
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/yourusername/agri-kg-builder.git
+git clone https://github.com/Barath3012/KGConstructionForFarmersUsingDL.git
 cd agri-kg-builder
 
 # Create and activate a virtual environment
@@ -107,7 +103,7 @@ KGConstructionForFarmersUsingDL/
 ## ▶️ Run the App
 
 ```bash
-streamlit run app/main.py
+streamlit run front_end.py
 ```
 
 Navigate to `http://localhost:8501` in your browser.
@@ -116,7 +112,7 @@ Navigate to `http://localhost:8501` in your browser.
 
 ## 🧪 Example Use Case
 
-Input a paragraph such as:
+Input a paragraph or a text file such as:
 
 > "Wheat requires well-drained loamy soil and moderate rainfall. In Punjab, India, farmers prefer the PBW-343 variety for its resistance to rust."
 
@@ -130,7 +126,7 @@ The app will:
 
 ## 📌 Notes
 
-- You may need to fine-tune your NER and RE models using domain-specific datasets for best results.
+- NER and RE models are fine tuned using domain-specific datasets for best results.
 - Blank nodes or nested relations are handled using extended triple structures.
 
 ---
@@ -157,5 +153,3 @@ Contributions are welcome! Please open issues or submit pull requests for improv
 ---
 
 ```
-
-Let me know if you want to tailor this for deployment (Docker, Hugging Face Spaces, etc.) or include badges and usage screenshots!
